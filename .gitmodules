@@ -1,0 +1,6 @@
+[submodule "ext/ShareX"]
+	path = ext/ShareX
+	url = https://github.com/ShareX/ShareX.git
+[submodule "ext/CustomUploaders"]
+	path = ext/CustomUploaders
+	url = https://github.com/ShareX/CustomUploaders.git
