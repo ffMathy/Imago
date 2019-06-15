@@ -134,6 +134,10 @@
       <Project>{E1C94415-3424-4517-A2A1-B2FDD1F59C67}</Project>
       <Name>ShareX.UploadersLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ext\ShareX\ShareX\ShareX.csproj">
+      <Project>{C5AE4585-E9EC-4FA3-B75A-E1210635ACB6}</Project>
+      <Name>ShareX</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

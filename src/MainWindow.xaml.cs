@@ -1,9 +1,12 @@
-﻿using ShareX.ScreenCaptureLib;
+﻿using ShareX;
+using ShareX.ScreenCaptureLib;
 using ShareX.UploadersLib.ImageUploaders;
 using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Imago
@@ -15,16 +18,36 @@ namespace Imago
     {
         public MainWindow()
         {
+            SettingManager
             InitializeComponent();
+            CaptureVideo();
+        }
 
-            using (var image = RegionCaptureTasks.GetRegionImage(new RegionCaptureOptions()
+        private async void CaptureVideo()
+        {
+            RegionCaptureTasks.GetRectangleRegion(out var rectangle, GetRegionCaptureOptions());
+            ScreenRecordManager.StartStopRecording(ScreenRecordOutput.FFmpeg, ScreenRecordStartMethod.CustomRegion, new TaskSettings()
             {
-                DetectWindows = true
-            }))
+                CaptureSettings = new TaskSettingsCapture()
+                {
+                    FFmpegOptions = new FFmpegOptions()
+                    {
+                        VideoCodec = FFmpegVideoCodec.libvpx,
+                        VPx_bitrate = 2000
+                    },
+                    CaptureCustomRegion = rectangle
+                }
+            });
+        }
+
+        private void CaptureImage()
+        {
+            using (var image = RegionCaptureTasks.GetRegionImage(GetRegionCaptureOptions()))
             {
                 var jpgEncoder = GetEncoder(ImageFormat.Jpeg);
-                image.Save("upload.jpg", jpgEncoder, new EncoderParameters(1) {
-                    Param = new [] {
+                image.Save("upload.jpg", jpgEncoder, new EncoderParameters(1)
+                {
+                    Param = new[] {
                         new EncoderParameter(Encoder.Quality, 100L)
                     }
                 });
@@ -38,6 +61,14 @@ namespace Imago
                 var finalUri = new Uri(uri.Scheme + "://i." + uri.Host + uri.AbsolutePath + ".jpg");
                 Process.Start(finalUri.ToString());
             }
+        }
+
+        private static RegionCaptureOptions GetRegionCaptureOptions()
+        {
+            return new RegionCaptureOptions()
+            {
+                DetectWindows = true
+            };
         }
 
         private ImageCodecInfo GetEncoder(ImageFormat format)
