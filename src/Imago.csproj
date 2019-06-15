@@ -80,10 +80,7 @@
     <Compile Include="Converters\DateTimeOffsetToLocalDateConverter.cs" />
     <Compile Include="Models\CapturedMedia.cs" />
     <Compile Include="Services\DesignServicesModule.cs" />
-    <Compile Include="Services\Design\DesignHistoryService.cs" />
-    <Compile Include="Services\Interfaces\IHistoryService.cs" />
     <Compile Include="Services\RuntimeServicesModule.cs" />
-    <Compile Include="Services\Runtime\HistoryService.cs" />
     <Compile Include="Services\ServicesModule.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
@@ -132,6 +129,10 @@
     <ProjectReference Include="..\ext\ShareX\ShareX.ScreenCaptureLib\ShareX.ScreenCaptureLib.csproj">
       <Project>{DBDB0DAA-B3AE-4CC4-A8C2-20550B7F32E3}</Project>
       <Name>ShareX.ScreenCaptureLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ext\ShareX\ShareX.UploadersLib\ShareX.UploadersLib.csproj">
+      <Project>{E1C94415-3424-4517-A2A1-B2FDD1F59C67}</Project>
+      <Name>ShareX.UploadersLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

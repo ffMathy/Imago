@@ -12,25 +12,6 @@
         MinWidth="600"
         Width="800"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition />
-		</Grid.RowDefinitions>
-
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto" />
-			<ColumnDefinition />
-		</Grid.ColumnDefinitions>
-
-		<DataGrid Grid.Column="1"
-		          ItemsSource="{Binding CapturedMediaHistory, Mode=OneWay}"
-		          AutoGenerateColumns="False">
-			<DataGrid.Columns>
-				<DataGridTextColumn Header="Filename"
-				                    Binding="{Binding FileName}" />
-				<DataGridTextColumn Header="Capture date"
-				                    Binding="{Binding CaptureDate, Converter={StaticResource DateTimeOffsetToLocalDateConverter}}" />
-			</DataGrid.Columns>
-		</DataGrid>
-	</Grid>
+    <Grid>
+    </Grid>
 </Window>
