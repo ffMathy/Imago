@@ -18,12 +18,11 @@ namespace Imago
     {
         public MainWindow()
         {
-            SettingManager
             InitializeComponent();
             CaptureVideo();
         }
 
-        private async void CaptureVideo()
+        private void CaptureVideo()
         {
             RegionCaptureTasks.GetRectangleRegion(out var rectangle, GetRegionCaptureOptions());
             ScreenRecordManager.StartStopRecording(ScreenRecordOutput.FFmpeg, ScreenRecordStartMethod.CustomRegion, new TaskSettings()
