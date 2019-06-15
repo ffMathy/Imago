@@ -24,10 +24,7 @@ namespace Imago
         public MainWindow()
         {
             InitializeComponent();
-        }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
             RegionCaptureTasks.GetRegionImage(new RegionCaptureOptions()
             {
                 DetectWindows = true
