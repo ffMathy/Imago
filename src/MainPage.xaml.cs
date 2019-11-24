@@ -1,10 +1,15 @@
-﻿using System;
+﻿using Imago.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Capture;
+using Windows.Media.AppRecording;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,11 +27,28 @@ namespace Imago
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private VideoCapture videoCapture;
+
         public MainPage()
         {
             this.InitializeComponent();
 
+            Loaded += MainPage_Loaded;
+        }
 
+        private async void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            Loaded -= MainPage_Loaded;
+
+            var capture = new VideoCapture();
+            this.videoCapture = capture;
+
+            await capture.StartAsync();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            videoCapture.Stop();
         }
     }
 }
